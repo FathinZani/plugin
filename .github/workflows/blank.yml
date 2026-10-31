@@ -1,0 +1,41 @@
+name: Build Grand Inventory System
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Extract Source
+        run: |
+          unzip -q GrandInventorySystem-Source-1.0.1.zip -d source
+
+      - name: Find Maven Project
+        run: |
+          find source -name pom.xml
+
+      - name: Build Plugin
+        run: |
+          POM=$(find source -name pom.xml | head -n 1)
+          if [ -z "$POM" ]; then
+            echo "pom.xml tidak ditemukan!"
+            exit 1
+          fi
+          mvn clean package -B -f "$POM"
+
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: GrandInventorySystem
+          path: source/**/target/*.jar
