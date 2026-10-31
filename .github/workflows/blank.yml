@@ -37,5 +37,5 @@ jobs:
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
-          name: GrandInventorySystem
+          name: GachaPets
           path: source/**/target/*.jar
