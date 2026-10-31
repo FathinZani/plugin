@@ -1,39 +1,37 @@
-name: Build Grand Inventory System
+name: Build GachaPets
 
 on:
-workflow_dispatch:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
-build:
-runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  - name: Setup Java 21
-    uses: actions/setup-java@v4
-    with:
-      distribution: temurin
-      java-version: '21'
-      cache: maven
+      - name: Setup Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
 
-  - name: Extract Source
-    run: |
-      unzip -q GrandInventorySystem-Source-1.0.1.zip -d source
-      find source -name pom.xml
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
-  - name: Build Plugin
-    run: |
-      POM=$(find source -name pom.xml | head -n 1)
-      if [ -z "$POM" ]; then
-        echo "ERROR: pom.xml tidak ditemukan"
-        exit 1
-      fi
-      mvn -B -f "$POM" clean package
+      - name: Build GachaPets
+        run: gradle --no-daemon clean build
 
-  - name: Upload JAR
-    uses: actions/upload-artifact@v4
-    with:
-      name: GrandInventorySystem
-      path: source/**/target/*.jar
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: GachaPets-1.0.0
+          path: build/libs/GachaPets-1.0.0.jar
