@@ -19,7 +19,7 @@ jobs:
 
       - name: Extract Source
         run: |
-          unzip -q -Gachapets1.0.zip -d source
+          unzip -q Gachapets1.0.zip -d source
 
       - name: Find Maven Project
         run: |
