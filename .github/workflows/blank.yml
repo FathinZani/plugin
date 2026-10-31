@@ -1,4 +1,4 @@
-name: Build Grand Inventory System
+name: Build GachaPets
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
 
       - name: Extract Source
         run: |
-          unzip -q GrandInventorySystem-Source-1.0.1.zip -d source
+          unzip -q GachaPets-1.0.0-source.zip -d source
 
       - name: Find Maven Project
         run: |
