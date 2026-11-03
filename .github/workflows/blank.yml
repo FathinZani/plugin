@@ -19,7 +19,7 @@ jobs:
 
       - name: Extract Source
         run: |
-          unzip -q GachaPets1.0.zip -d source
+          unzip -q GachaPets-2.0.0-source.zip -d source
 
       - name: Find Maven Project
         run: |
