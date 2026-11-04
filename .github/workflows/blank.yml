@@ -1,4 +1,4 @@
-name: Build Gacha pets
+name: Build AI economy
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
 
       - name: Extract Source
         run: |
-          unzip -q GachaPets-2.0.0-source.zip -d source
+          unzip -q AI-Dynamic-Economy-2.0.0-Professional-Source.zip -d source
 
       - name: Find Maven Project
         run: |
@@ -37,5 +37,5 @@ jobs:
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
-          name: Gachapets2.0
+          name: Economy Ai
           path: source/**/target/*.jar
