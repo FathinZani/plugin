@@ -19,7 +19,7 @@ jobs:
 
       - name: Extract Source
         run: |
-          unzip -q AI-Dynamic-Economy-2.0.0-Professional-Source.zip -d source
+          unzip -q AI-Dynamic-Economy-Pro.zip -d source
 
       - name: Find Maven Project
         run: |
